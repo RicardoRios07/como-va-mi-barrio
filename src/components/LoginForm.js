@@ -9,26 +9,15 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import EmailIcon from '@mui/icons-material/Email';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="">
-                ¿Cómo va mi barrio?
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-
 
 const defaultTheme = createTheme();
 
@@ -69,16 +58,19 @@ export default function LoginForm() {
 
 
     return (
-
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        backgroundColor: '#ffffff', // Cambia el color según tus preferencias
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        padding: '20px', // Agrega espacio interno para que el contenido no quede pegado al borde
+                        borderRadius: '20px', // Añade bordes redondeados
+                        boxShadow:'0px 10px 20px 10px',
+                        marginTop:'100px'
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -97,6 +89,11 @@ export default function LoginForm() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            InputProps={{
+                                startAdornment: (
+                                    <EmailIcon sx={{ color: 'action.active', mr: 1 }} />
+                                ),
+                            }}
                         />
                         <TextField
                             margin="normal"
@@ -107,6 +104,11 @@ export default function LoginForm() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            InputProps={{
+                                startAdornment: (
+                                    <VpnKeyIcon sx={{ color: 'action.active', mr: 1 }} />
+                                ),
+                            }}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -120,14 +122,16 @@ export default function LoginForm() {
                         >
                             Iniciar Sesión
                         </Button>
-                        <Grid container>
+                        <Grid container direction="column">
                             <Grid item xs>
                                 <Link href="#" variant="body2">
+                                    <HelpOutlineIcon sx={{ mr: 1 }} />
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="/register" variant="body2">
+                                    <HowToRegIcon sx={{ mr: 1 }} />
                                     {"No tienes una cuenta? Registrate"}
                                 </Link>
                             </Grid>
@@ -139,3 +143,9 @@ export default function LoginForm() {
         </ThemeProvider>
     );
 }
+
+
+
+
+
+

@@ -1,14 +1,17 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import RegisterForm from '../components/RegisterForm'; // Asegúrate de que la ruta sea correcta
+import RegisterForm from '../components/RegisterForm';
 
 function RegisterPage() {
     return (
-        <div style={{ minHeight: '100vh', position: 'relative' }}>
+        <div style={{ backgroundColor: '#C5C5C5' }}>
             <Header />
-            <RegisterForm />
-            <Footer />
+            <div style={{ marginTop: '100px' }}>
+                {/* Agrega un margen en la parte superior para dejar espacio para el Header */}
+                <RegisterForm />
+                <Footer />
+            </div>
         </div>
     );
 }

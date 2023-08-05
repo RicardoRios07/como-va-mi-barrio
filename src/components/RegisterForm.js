@@ -7,13 +7,16 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import EmailIcon from '@mui/icons-material/Email';
+import PersonIcon from '@mui/icons-material/Person';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MainMenu from './MainMenu';
-import Footer from './Footer';
 
 const defaultTheme = createTheme();
 
@@ -57,10 +60,14 @@ export default function RegisterForm() {
                 <CssBaseline />
                 <Box
                     sx={{
+                        backgroundColor: '#ffffff', // Cambia el color según tus preferencias
                         marginTop: 8,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        padding: '20px', // Agrega espacio interno para que el contenido no quede pegado al borde
+                        borderRadius: '20px', // Añade bordes redondeados
+                        boxShadow: '0px 10px 20px 10px'
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -78,8 +85,13 @@ export default function RegisterForm() {
                                     required
                                     fullWidth
                                     id="firstName"
-                                    label="First Name"
+                                    label="Nombres"
                                     autoFocus
+                                    InputProps={{
+                                        startAdornment: (
+                                            <PersonIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -87,9 +99,14 @@ export default function RegisterForm() {
                                     required
                                     fullWidth
                                     id="lastName"
-                                    label="Last Name"
+                                    label="Apellidos"
                                     name="lastName"
                                     autoComplete="family-name"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <PersonIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -100,6 +117,11 @@ export default function RegisterForm() {
                                     label="Cedula"
                                     name="cedula"
                                     autoComplete="off"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <ContactPhoneIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -110,6 +132,11 @@ export default function RegisterForm() {
                                     label="Número de Teléfono"
                                     name="numTelefono"
                                     autoComplete="off"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <ContactPhoneIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -117,9 +144,14 @@ export default function RegisterForm() {
                                     required
                                     fullWidth
                                     id="email"
-                                    label="Email Address"
+                                    label="Correo electronico"
                                     name="email"
                                     autoComplete="email"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <EmailIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -127,20 +159,30 @@ export default function RegisterForm() {
                                     required
                                     fullWidth
                                     name="password"
-                                    label="Password"
+                                    label="Contraseña"
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <VpnKeyIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     name="photo"
-                                    label="Photo"
+                                    label="Foto de perfil"
                                     type="file"
                                     id="photo"
                                     accept="image/*"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <PhotoCameraIcon sx={{ color: 'action.active', mr: 1 }} />
+                                        ),
+                                    }}
                                 />
                             </Grid>
                         </Grid>

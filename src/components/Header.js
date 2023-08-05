@@ -4,16 +4,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
-import Avatar from '@mui/material/Avatar';
 import Logo from '../LOGO-BARRIO.png';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -21,10 +16,6 @@ function Header() {
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
@@ -36,17 +27,17 @@ function Header() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <img src={Logo} alt="Logo de la aplicación" style={{ width: '100px', height: '100px', marginRight: '10px' }} />
-                    <Typography variant="h4" style={{fontFamily:'ui-rounded'}}>¿Cómo va mi barrio?</Typography>
+                    <Typography variant="h4" style={{ fontFamily: 'Rockwell' }}>¿Cómo va mi barrio?</Typography>
                 </Box>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
                         size="large"
-                        aria-label="account of current user"
+                        aria-label="menu"
                         aria-controls="menu-appbar"
                         aria-haspopup="true"
                         onClick={handleOpenNavMenu}
@@ -58,43 +49,82 @@ function Header() {
                         id="menu-appbar"
                         anchorEl={anchorElNav}
                         anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
+                            vertical: 'top',
+                            horizontal: 'right',
                         }}
                         keepMounted
                         transformOrigin={{
                             vertical: 'top',
-                            horizontal: 'left',
+                            horizontal: 'right',
                         }}
                         open={Boolean(anchorElNav)}
                         onClose={handleCloseNavMenu}
                     >
-                        {pages.map((page) => (
-                            <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{page}</Typography>
-                            </MenuItem>
-                        ))}
+                        {/* Agregar elementos del menú aquí */}
+                        <MenuItem>
+                            <Button
+                                component="a"
+                                href="/"
+                                variant="outlined"
+                                sx={{ color: 'inherit', width: '100%' }}
+                            >
+                                Inicio
+                            </Button>
+                        </MenuItem>
+                        <MenuItem>
+                            <Button
+                                component="a"
+                                href="/register"
+                                variant="outlined"
+                                sx={{ color: 'inherit', width: '100%' }}
+                            >
+                                Registrarse
+                            </Button>
+                        </MenuItem>
+                        <MenuItem>
+                            <Button
+                                component="a"
+                                href="/login"
+                                variant="outlined"
+                                sx={{ color: 'inherit', width: '100%' }}
+                            >
+                                Iniciar Sesión
+                            </Button>
+                        </MenuItem>
                     </Menu>
                 </Box>
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    {pages.map((page) => (
-                        <Button
-                            key={page}
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            {page}
-                        </Button>
-                    ))}
+                    <Button
+                        component="a"
+                        href="/"
+                        variant="contained"
+                        color='primary'
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        Inicio
+                    </Button>
+                    <Button
+                        component="a"
+                        href="/register"
+                        variant="contained"
+                        color='primary'
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        Registrarse
+                    </Button>
+                    <Button
+                        component="a"
+                        href="/login"
+                        variant="contained"
+                        color='primary'
+                        sx={{ my: 2, color: 'white', display: 'block' }} // Añade esta línea
+                    >
+                        Iniciar Sesión
+                    </Button>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                            <Avatar alt="Remy Sharp" src="src/LOGO-BARRIO.png" />
-                        </IconButton>
-                    </Tooltip>
+                    {/* Botones y menú de usuario */}
                     <Menu
-                        sx={{ mt: '45px' }}
                         id="menu-appbar"
                         anchorEl={anchorElUser}
                         anchorOrigin={{
@@ -109,11 +139,7 @@ function Header() {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                     >
-                        {settings.map((setting) => (
-                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">{setting}</Typography>
-                            </MenuItem>
-                        ))}
+                        {/* Elementos del menú de usuario */}
                     </Menu>
                 </Box>
             </Toolbar>
