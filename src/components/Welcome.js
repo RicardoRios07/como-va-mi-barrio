@@ -8,9 +8,9 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
     welcomeContainer: {
         display: 'flex',
-        justifyContent: 'flex-start',
+        justifyContent: 'center', // Centra horizontalmente en pantallas pequeñas
         alignItems: 'center',
-        height: '100vh',
+        minHeight: '100vh', // Asegura que el contenedor tenga al menos la altura completa de la ventana
         position: 'relative',
         backgroundSize: 'cover',
         backgroundPosition: 'right',
@@ -31,9 +31,9 @@ const useStyles = makeStyles({
         marginLeft: '40px',
         padding: '20px',
         position: 'relative',
-        alignItems:'left',
-        zIndex: 1, // Aumenta el valor del zIndex para que la card se muestre por encima del fondo
-
+        alignItems: 'left',
+        zIndex: 1,
+        maxWidth: '600px', // Limita el ancho de la card para mejorar la legibilidad en pantallas pequeñas
     },
     welcomeHeader: {
         marginBottom: '20px',
@@ -41,18 +41,9 @@ const useStyles = makeStyles({
         fontFamily: 'Arial, sans-serif',
         fontWeight: 'bold',
         fontSize: '24px',
-        
     },
     welcomeText: {
         marginBottom: '20px',
-    },
-    '@media (max-width: 600px)': {
-        welcomeContainer: {
-            justifyContent: 'center',
-        },
-        cardContainer: {
-            marginLeft: 0,
-        },
     },
 });
 
@@ -74,7 +65,7 @@ function Welcome() {
                         ¿Tienes un bache en tu calle que necesita ser arreglado? ¿Un poste de luz que no funciona? ¿Algún problema de seguridad que deba ser atendido? ¡Este es el lugar para hacerlo!
                     </Typography>
                     <Typography variant="body1" className={classes.welcomeText}>
-                        Únete a nosotros para mejorar juntos nuestra comunidad. ¡Explora, denuncia y contribuye al bienestar de tu barrio! <a href="/register" style={{color: '#3498db', textDecoration: 'underline'}}>¡Comienza ahora!</a>
+                        Únete a nosotros para mejorar juntos nuestra comunidad. ¡Explora, denuncia y contribuye al bienestar de tu barrio! <a href="/register" style={{ color: '#3498db', textDecoration: 'underline' }}>¡Comienza ahora!</a>
                     </Typography>
                 </CardContent>
             </Card>
