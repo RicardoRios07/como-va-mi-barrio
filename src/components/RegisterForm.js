@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
+import { Fingerprint } from '@mui/icons-material';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
@@ -56,18 +57,18 @@ export default function RegisterForm() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="sm"> {/* Cambia el maxWidth a "sm" */}
                 <CssBaseline />
                 <Box
                     sx={{
-                        backgroundColor: '#ffffff', // Cambia el color según tus preferencias
-                        marginTop: 8,
+                        backgroundColor: '#ffffff',
+                        marginTop: '120px',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        padding: '20px', // Agrega espacio interno para que el contenido no quede pegado al borde
-                        borderRadius: '20px', // Añade bordes redondeados
-                        boxShadow: '0px 10px 20px 10px'
+                        padding: '20px',
+                        borderRadius: '20px',
+                        boxShadow: '0px 10px 20px 10px',
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -109,7 +110,7 @@ export default function RegisterForm() {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     fullWidth
@@ -119,12 +120,12 @@ export default function RegisterForm() {
                                     autoComplete="off"
                                     InputProps={{
                                         startAdornment: (
-                                            <ContactPhoneIcon sx={{ color: 'action.active', mr: 1 }} />
+                                            <Fingerprint sx={{ color: 'action.active', mr: 1 }} />
                                         ),
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
                                     fullWidth
@@ -207,4 +208,4 @@ export default function RegisterForm() {
             <ToastContainer></ToastContainer>
         </ThemeProvider>
     );
-}
+}    

@@ -10,7 +10,7 @@ function Navigation() {
 
     return (
         <Router>
-            <div style={{ marginBottom: '50px' }}>
+            <div>
                 <Routes>
                     {map(routes, (route, index) => (
                         <Route

@@ -74,7 +74,7 @@ function Welcome() {
                         ¿Tienes un bache en tu calle que necesita ser arreglado? ¿Un poste de luz que no funciona? ¿Algún problema de seguridad que deba ser atendido? ¡Este es el lugar para hacerlo!
                     </Typography>
                     <Typography variant="body1" className={classes.welcomeText}>
-                        Únete a nosotros para mejorar juntos nuestra comunidad. ¡Explora, denuncia y contribuye al bienestar de tu barrio!
+                        Únete a nosotros para mejorar juntos nuestra comunidad. ¡Explora, denuncia y contribuye al bienestar de tu barrio! <a href="/register" style={{color: '#3498db', textDecoration: 'underline'}}>¡Comienza ahora!</a>
                     </Typography>
                 </CardContent>
             </Card>

@@ -16,7 +16,7 @@ function WelcomePage() {
                 zIndex: 0, // Añade el zIndex para establecer el orden en el apilamiento
             }}
         >
-            <Header  styles = {{zIndex:2}}/>
+            <Header  styles = {{zIndex:0}}/>
             <Welcome />
             <Footer />
         </div>
