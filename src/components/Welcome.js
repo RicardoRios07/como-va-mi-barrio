@@ -5,12 +5,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     welcomeContainer: {
         display: 'flex',
-        justifyContent: 'center', // Centra horizontalmente en pantallas pequeñas
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        minHeight: '100vh', // Asegura que el contenedor tenga al menos la altura completa de la ventana
+        height: '100vh',
         position: 'relative',
         backgroundSize: 'cover',
         backgroundPosition: 'right',
@@ -33,7 +33,6 @@ const useStyles = makeStyles({
         position: 'relative',
         alignItems: 'left',
         zIndex: 1,
-        maxWidth: '600px', // Limita el ancho de la card para mejorar la legibilidad en pantallas pequeñas
     },
     welcomeHeader: {
         marginBottom: '20px',
@@ -45,7 +44,12 @@ const useStyles = makeStyles({
     welcomeText: {
         marginBottom: '20px',
     },
-});
+    '@media (max-width: 600px)': {
+        cardContainer: {
+            marginLeft: 0, // Aplicar en pantallas pequeñas
+        },
+    },
+}));
 
 function Welcome() {
     const classes = useStyles();
@@ -56,7 +60,7 @@ function Welcome() {
             <Card className={classes.cardContainer}>
                 <CardContent>
                     <Typography variant="h4" className={classes.welcomeHeader}>
-                        ¡Bienvenido a "¿Cómo va mi barrio?"!
+                        ¡Bienvenido/a a "¿Cómo va mi barrio?"!
                     </Typography>
                     <Typography variant="body1" className={classes.welcomeText}>
                         En nuestra plataforma, te brindamos la oportunidad de hacer una diferencia en tu comunidad. Si eres residente de Loja, Ecuador, aquí puedes denunciar problemas y compartir información sobre tu barrio.
