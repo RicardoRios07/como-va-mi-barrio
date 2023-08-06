@@ -11,23 +11,37 @@ const useStyles = makeStyles({
         justifyContent: 'flex-start',
         alignItems: 'center',
         height: '100vh',
-        backgroundImage: 'url("https://img.freepik.com/free-vector/flat-design-coliving-illustration_23-2150319576.jpg?w=1380&t=st=1691254255~exp=1691254855~hmac=b1e623c4aeac2477fa5126abd4eee4cf199653d1e5bcb1f767dce46ce3684e19")',
+        position: 'relative',
         backgroundSize: 'cover',
         backgroundPosition: 'right',
     },
+    filteredBackground: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: -1,
+    },
     cardContainer: {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: 'white',
         borderRadius: '10px',
-        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 10px 20px 10px',
         marginLeft: '40px',
         padding: '20px',
+        position: 'relative',
+        alignItems:'left',
+        zIndex: 1, // Aumenta el valor del zIndex para que la card se muestre por encima del fondo
+
     },
     welcomeHeader: {
         marginBottom: '20px',
         color: '#3498db',
-        fontFamily: 'Arial, sans-serif', // Cambia 'Arial' por la fuente que prefieras
-        fontWeight: 'bold', // Opcional: ajusta el peso de la fuente
-        fontSize: '24px', // Opcional: ajusta el tamaño de la fuente
+        fontFamily: 'Arial, sans-serif',
+        fontWeight: 'bold',
+        fontSize: '24px',
+        
     },
     welcomeText: {
         marginBottom: '20px',
@@ -47,6 +61,7 @@ function Welcome() {
 
     return (
         <Box className={classes.welcomeContainer}>
+            <div className={classes.filteredBackground}></div>
             <Card className={classes.cardContainer}>
                 <CardContent>
                     <Typography variant="h4" className={classes.welcomeHeader}>

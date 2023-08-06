@@ -7,7 +7,6 @@ import {Facebook, GitHub, Language} from '@mui/icons-material';
 
 const footerStyles = {
     color:'black',
-    backgroundColor:'white',
     position: "fixed",
     left: 0,
     bottom: 0,

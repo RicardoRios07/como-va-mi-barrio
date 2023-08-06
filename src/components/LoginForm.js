@@ -70,7 +70,7 @@ export default function LoginForm() {
                         padding: '20px', // Agrega espacio interno para que el contenido no quede pegado al borde
                         borderRadius: '20px', // Añade bordes redondeados
                         boxShadow:'0px 10px 20px 10px',
-                        marginTop:'100px'
+                        marginTop:'180px'
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

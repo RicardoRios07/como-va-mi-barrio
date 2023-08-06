@@ -5,13 +5,18 @@ import Welcome from "../components/Welcome";
 
 function WelcomePage() {
     return (
-        <div style={{
-            minHeight: '100vh',
-            position: 'relative',
-            backgroundColor: '#C5C5C5',
-        }}
+        <div
+            style={{
+                position: "relative",
+                backgroundColor: "#C5C5C5",
+                backgroundImage:
+                    'url("https://img.freepik.com/free-vector/flat-design-coliving-illustration_23-2150319576.jpg?w=1380&t=st=1691254255~exp=1691254855~hmac=b1e623c4aeac2477fa5126abd4eee4cf199653d1e5bcb1f767dce46ce3684e19")',
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                zIndex: 0, // Añade el zIndex para establecer el orden en el apilamiento
+            }}
         >
-            <Header/>
+            <Header  styles = {{zIndex:2}}/>
             <Welcome />
             <Footer />
         </div>

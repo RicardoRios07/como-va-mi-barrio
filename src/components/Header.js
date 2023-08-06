@@ -8,7 +8,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
-import Logo from '../LOGO-BARRIO.png';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import LoginIcon from '@mui/icons-material/Login';
 
 function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -30,7 +32,7 @@ function Header() {
         <AppBar position="fixed">
             <Toolbar>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={Logo} alt="Logo de la aplicación" style={{ width: '100px', height: '100px', marginRight: '10px' }} />
+                    <img src='https://res.cloudinary.com/drwhn0ldb/image/upload/v1691288547/pocj8i7ftk6hryiht6ow.png' alt="Logo de la aplicación" style={{ width: '100px', height: '100px', marginRight: '10px' }} />
                     <Typography variant="h4" style={{ fontFamily: 'Rockwell' }}>¿Cómo va mi barrio?</Typography>
                 </Box>
                 <Box sx={{ flexGrow: 1 }} />
@@ -66,7 +68,8 @@ function Header() {
                                 component="a"
                                 href="/"
                                 variant="outlined"
-                                sx={{ color: 'inherit', width: '100%' }}
+                                startIcon={<HomeIcon />}
+                                sx={{ color: 'inherit', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold' }}
                             >
                                 Inicio
                             </Button>
@@ -76,7 +79,8 @@ function Header() {
                                 component="a"
                                 href="/register"
                                 variant="outlined"
-                                sx={{ color: 'inherit', width: '100%' }}
+                                startIcon={<PersonAddIcon />}
+                                sx={{ color: 'inherit', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold' }}
                             >
                                 Registrarse
                             </Button>
@@ -86,7 +90,8 @@ function Header() {
                                 component="a"
                                 href="/login"
                                 variant="outlined"
-                                sx={{ color: 'inherit', width: '100%' }}
+                                startIcon={<LoginIcon />}
+                                sx={{ color: 'inherit', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold' }}
                             >
                                 Iniciar Sesión
                             </Button>
@@ -98,8 +103,9 @@ function Header() {
                         component="a"
                         href="/"
                         variant="contained"
-                        color='primary'
-                        sx={{ my: 2, color: 'white', display: 'block' }}
+                        color='success'
+                        startIcon={<HomeIcon sx={{ fontSize: 20 }} />}
+                        sx={{ my: 2, color: 'white', display: 'flex', width: '170px', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold', marginRight: '10px' }}
                     >
                         Inicio
                     </Button>
@@ -107,8 +113,9 @@ function Header() {
                         component="a"
                         href="/register"
                         variant="contained"
-                        color='primary'
-                        sx={{ my: 2, color: 'white', display: 'block' }}
+                        color='success'
+                        startIcon={<PersonAddIcon sx={{ fontSize: 20 }} />}
+                        sx={{ my: 2, color: 'white', display: 'flex', width: '170px', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold', marginRight: '10px' }}
                     >
                         Registrarse
                     </Button>
@@ -116,8 +123,9 @@ function Header() {
                         component="a"
                         href="/login"
                         variant="contained"
-                        color='primary'
-                        sx={{ my: 2, color: 'white', display: 'block' }} // Añade esta línea
+                        color='success'
+                        startIcon={<LoginIcon sx={{ fontSize: 20 }} />}
+                        sx={{ my: 2, color: 'white', display: 'flex', width: '170px', justifyContent: 'space-between', alignItems: 'center', fontWeight: 'bold' }}
                     >
                         Iniciar Sesión
                     </Button>
