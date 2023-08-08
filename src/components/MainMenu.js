@@ -20,8 +20,10 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import ListIcon from '@mui/icons-material/List';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import AllDenuncias from './AllDenuncias';
+import FormDenuncia from './FormDenuncia';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -137,7 +139,7 @@ export default function MiniDrawer() {
                 <Divider />
                 <List>
                     {[
-                        { text: 'Inicio', icon: <HomeIcon />, path: '/' },
+                        { text: 'Inicio', icon: <HomeIcon />, path: '/denuncias' },
                         { text: 'Crear Denuncia', icon: <PostAddIcon />, path: '/crear-denuncia' },
                         { text: 'Mis Denuncias', icon: <ListIcon />, path: '/mis-denuncias' },
                         { text: 'Eliminar Denuncia', icon: <DeleteIcon />, path: '/eliminar-denuncia' },
@@ -168,9 +170,9 @@ export default function MiniDrawer() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                <Typography paragraph>
-                    {/* Contenido */}
-                </Typography>
+                {/* <AllDenuncias /> */}
+                <FormDenuncia />
+                
             </Box>
         </Box>
     );

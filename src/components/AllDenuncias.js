@@ -3,13 +3,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid'; // Importa el componente Grid
+import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     card: {
         marginBottom: '20px',
         borderRadius: '10px',
+        width: '100%', 
         boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
     },
     cardTitle: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
         color: '#666',
     },
     cardImage: {
-        width: '350px',
+        width: '100%', 
         height: '350px',
         maxHeight: '200px',
         objectFit: 'cover',
@@ -35,12 +36,11 @@ const useStyles = makeStyles({
     },
 });
 
-function Home() {
+function AllDenuncias() {
     const classes = useStyles();
     const [denuncias, setDenuncias] = useState([]);
 
     useEffect(() => {
-        // Realizar la petición GET a la API aquí
         fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getAllDenuncias')
             .then(response => response.json())
             .then(data => setDenuncias(data))
@@ -49,9 +49,9 @@ function Home() {
 
     return (
         <Box>
-            <Grid container spacing={2}> {/* Agrega el componente Grid con spacing */}
+            <Grid container spacing={2}>
                 {denuncias.map(denuncia => (
-                    <Grid item xs={12} md={6} lg={4} key={denuncia._id}> {/* Ajusta las columnas según el tamaño de la pantalla */}
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={denuncia._id}> {/* Ajusta las columnas según el tamaño de la pantalla */}
                         <Card className={classes.card}>
                             <img src={denuncia.evidencia} alt="Evidencia" className={classes.cardImage} />
                             <CardContent>
@@ -90,4 +90,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default AllDenuncias;
