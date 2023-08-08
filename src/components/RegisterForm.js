@@ -18,6 +18,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Navigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
@@ -43,10 +44,16 @@ export default function RegisterForm() {
             const responseData = await response.json();
 
             if (response.ok) {
-                toast.success('Usuario registrado con exito');
+                toast.success('Usuario registrado con éxito');
+                // Redirecciona usando el componente Navigate
+                return <Navigate to="/login" />;
+            } else if (response.status === 400) {
+                // Mostrar una notificación de error con el mensaje específico del backend para errores 400
+                console.log('Mensaje de error del backend:', responseData.error);
+                toast.error(responseData.error || 'Error en el registro');
             } else {
-                // Mostrar una notificación de error con el mensaje del backend
-                toast.error(responseData.message || 'Error en el registro');
+                // Mostrar una notificación de error genérico para otros errores
+                toast.error('Error en el registro');
             }
         } catch (error) {
             console.error('Error en la petición:', error);

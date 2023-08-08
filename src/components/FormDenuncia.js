@@ -92,9 +92,8 @@ const FormDenuncia = () => {
                             ),
                         }}
                     />
-                    <h5>Envia tu Ubicación: </h5>
-
-                    <GoogleMapComponent />
+                    <h5>Envía tu Ubicación: </h5>
+                    <GoogleMapComponent setUbicacion={setUbicacion} /> {/* Pasar setUbicacion como prop */}
                     <FormControl fullWidth margin="normal" required>
                         <InputLabel>Categoría</InputLabel>
                         <Select

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -10,11 +10,11 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import ListIcon from '@mui/icons-material/List';
@@ -72,26 +72,27 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        width: drawerWidth,
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-        boxSizing: 'border-box',
-        ...(open && {
-            ...openedMixin(theme),
-            '& .MuiDrawer-paper': openedMixin(theme),
-        }),
-        ...(!open && {
-            ...closedMixin(theme),
-            '& .MuiDrawer-paper': closedMixin(theme),
-        }),
+const Drawer = styled(MuiDrawer, {
+    shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+        ...openedMixin(theme),
+        '& .MuiDrawer-paper': openedMixin(theme),
     }),
-);
+    ...(!open && {
+        ...closedMixin(theme),
+        '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+}));
 
-export default function MiniDrawer() {
+export default function MainMenu() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [selectedMenu, setSelectedMenu] = useState('inicio'); // Estado para la selección de menú
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -101,8 +102,14 @@ export default function MiniDrawer() {
         setOpen(false);
     };
 
+    // Función para manejar la selección de menú
+    const handleMenuSelect = (menu) => {
+        setSelectedMenu(menu);
+    };
+
+
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', backgroundColor: '#00000' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
                 <Toolbar>
@@ -139,12 +146,12 @@ export default function MiniDrawer() {
                 <Divider />
                 <List>
                     {[
-                        { text: 'Inicio', icon: <HomeIcon />, path: '/denuncias' },
-                        { text: 'Crear Denuncia', icon: <PostAddIcon />, path: '/crear-denuncia' },
-                        { text: 'Mis Denuncias', icon: <ListIcon />, path: '/mis-denuncias' },
-                        { text: 'Eliminar Denuncia', icon: <DeleteIcon />, path: '/eliminar-denuncia' },
-                    ].map(({ text, icon, path }, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                        { text: 'Inicio', icon: <HomeIcon />, key: 'inicio' },
+                        { text: 'Crear Denuncia', icon: <PostAddIcon />,  key: 'crear-denuncia' },
+                        { text: 'Mis Denuncias', icon: <ListIcon />, key: 'misdenuncias' },
+                        { text: 'Eliminar Denuncia', icon: <DeleteIcon />, key: 'eliminar-denuncia' },
+                    ].map(({ text, icon, path, key }) => (
+                        <ListItem key={key} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -152,6 +159,7 @@ export default function MiniDrawer() {
                                     px: 2.5,
                                 }}
                                 component={Link} to={path}
+                                onClick={() => handleMenuSelect(key)} // Agregar el manejo de selección del menú
                             >
                                 <ListItemIcon
                                     sx={{
@@ -170,9 +178,10 @@ export default function MiniDrawer() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                {/* <AllDenuncias /> */}
-                <FormDenuncia />
-                
+                {selectedMenu === 'inicio' && <AllDenuncias />} {/* Mostrar AllDenuncias si selecciona Inicio */}
+                {selectedMenu === 'crear-denuncia' && <FormDenuncia />} {/* Mostrar FormDenuncia si selecciona Crear Denuncia */}
+                {selectedMenu === 'misdenuncias' && <AllDenuncias />}
+                {selectedMenu === 'eliminar-denuncia' && <AllDenuncias />}
             </Box>
         </Box>
     );

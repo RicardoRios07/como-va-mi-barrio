@@ -18,10 +18,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function LoginForm() {
+    const navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -37,17 +40,20 @@ export default function LoginForm() {
                     password: data.get('password'),
                 }),
             });
+
             const responseData = await response.json();
             if (response.ok) {
-                // Manejar el éxito
                 const token = responseData.token;
-                // Guardar el token en localStorage o en el estado, según tu preferencia
                 localStorage.setItem('auth-token', token);
-                // Mostrar una notificación de éxito
                 toast.success('Inicio de sesión exitoso');
+                navigate('/home'); // Redirige usando useNavigate
+            } else if (response.status === 400) {
+                // Mostrar una notificación de error con el mensaje específico del backend para errores 400
+                console.log('Mensaje de error del backend:', responseData.error);
+                toast.error(responseData.error || 'Error en el registro');
             } else {
-                // Mostrar una notificación de error con el mensaje del backend
-                toast.error(responseData.message || 'Error en el inicio de sesión');
+                // Mostrar una notificación de error genérico para otros errores
+                toast.error('Error en el registro');
             }
         } catch (error) {
             console.error('Error en la petición:', error);
@@ -55,6 +61,7 @@ export default function LoginForm() {
             toast.error('Error en el servidor');
         }
     };
+
 
 
     return (
