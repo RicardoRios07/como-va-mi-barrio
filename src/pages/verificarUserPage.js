@@ -1,16 +1,16 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import verificarCuenta from '../components/verificarUser';
+import VerificarCuenta from '../components/verificarUser';
 
-function verificarPage (){
+function verificarUserPage (){
     return (
         <div>
     <Header />
-    <verificarCuenta />
+    <VerificarCuenta />
     <Footer />
     </div>
     );
 }
 
-export default verificarPage;
+export default verificarUserPage;

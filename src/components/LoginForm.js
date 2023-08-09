@@ -131,7 +131,7 @@ export default function LoginForm() {
                         </Button>
                         <Grid container direction="column">
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link href="/nuevaContraseña" variant="body2">
                                     <HelpOutlineIcon sx={{ mr: 1 }} />
                                     ¿Olvidaste tu contraseña?
                                 </Link>

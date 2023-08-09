@@ -4,7 +4,7 @@ import { Container, Typography, CircularProgress, Alert, AlertTitle } from '@mui
 import axios from 'axios';
 
 const VerificarCuenta = () => {
-  const { token } = useParams();
+    const { token } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
