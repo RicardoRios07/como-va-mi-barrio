@@ -9,7 +9,7 @@ function VerificarUser({ verificationToken }) {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const response = await axios.post('https://back-barrios-462cb6c76674.herokuapp.com/auth/verifyUser', {
+        const response = await axios.post('https://back-barrios-462cb6c76674.herokuapp.com/auth/verifyUser/', {
           verificationToken: verificationToken
         });
 
