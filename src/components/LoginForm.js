@@ -43,14 +43,14 @@ export default function LoginForm() {
 
             const responseData = await response.json();
             if (response.ok) {
-                const token = responseData.token;
+                const token = responseData.data.token;
                 localStorage.setItem('auth-token', token);
                 toast.success('Inicio de sesión exitoso');
                 navigate('/home'); // Redirige usando useNavigate
             } else if (response.status === 400) {
                 // Mostrar una notificación de error con el mensaje específico del backend para errores 400
                 console.log('Mensaje de error del backend:', responseData.error);
-                toast.error(responseData.error || 'Error en el registro');
+                toast.error(responseData.error || 'Error en el inicio de sesión');
             } else {
                 // Mostrar una notificación de error genérico para otros errores
                 toast.error('Error en el registro');

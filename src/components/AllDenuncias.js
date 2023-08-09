@@ -41,16 +41,28 @@ function AllDenuncias() {
     const [denuncias, setDenuncias] = useState([]);
 
     useEffect(() => {
-        fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getAllDenuncias')
+        const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
+
+        fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getAllDenuncias', {
+            headers: {
+                'auth-token': authToken, // Agregar el token como encabezado
+            },
+        })
             .then(response => response.json())
             .then(data => setDenuncias(data))
             .catch(error => console.error('Error fetching denuncias:', error));
     }, []);
 
+    // Comprobar si denuncias no es un arreglo
+    if (!Array.isArray(denuncias)) {
+        return <p>No se pudo cargar las denuncias</p>;
+    }
+
+
     return (
-        <Box>
-            <Grid container spacing={2}>
-                {denuncias.map(denuncia => (
+            <Box>
+                <Grid container spacing={2}>
+                    {denuncias.map(denuncia => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={denuncia._id}> {/* Ajusta las columnas según el tamaño de la pantalla */}
                         <Card className={classes.card}>
                             <img src={denuncia.evidencia} alt="Evidencia" className={classes.cardImage} />
