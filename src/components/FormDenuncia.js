@@ -25,6 +25,8 @@ const FormDenuncia = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
+        const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
+
         const formData = new FormData();
         formData.append('tituloDenuncia', tituloDenuncia);
         formData.append('descripcion', descripcion);
@@ -35,7 +37,12 @@ const FormDenuncia = () => {
         try {
             const response = await axios.post(
                 'https://back-barrios-462cb6c76674.herokuapp.com/denuncias/nuevaDenuncia',
-                formData
+                formData,
+                {
+                    headers: {
+                        'auth-token': authToken, // Agregar el token como encabezado
+                    },
+                }
             );
             toast.success('Denuncia enviada con éxito');
             console.log('Respuesta de la API:', response.data);

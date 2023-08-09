@@ -15,7 +15,10 @@ function GoogleMapComponent({ setUbicacion }) {
   const handleMapClick = (event) => {
     const { lat, lng } = event.latLng;
     setSelectedLocation({ lat: lat(), lng: lng() });
-    setUbicacion({ lat: lat(), lng: lng() }); // Actualizar la ubicación en el formulario principal
+    
+    // Formatear las coordenadas como una cadena "latitud,longitud"
+    const ubicacionStr = `${lat()},${lng()}`;
+    setUbicacion(ubicacionStr); // Actualizar la ubicación en el formulario principal
   };
 
   return (
