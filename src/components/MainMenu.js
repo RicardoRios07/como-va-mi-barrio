@@ -22,6 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AllDenuncias from './AllDenuncias';
 import FormDenuncia from './FormDenuncia';
+import EliminarDenuncias from './EliminarDenuncias';
 
 const drawerWidth = 300;
 
@@ -181,7 +182,7 @@ export default function MainMenu() {
                 {selectedMenu === 'inicio' && <AllDenuncias />} {/* Mostrar AllDenuncias si selecciona Inicio */}
                 {selectedMenu === 'crear-denuncia' && <FormDenuncia />} {/* Mostrar FormDenuncia si selecciona Crear Denuncia */}
                 {selectedMenu === 'misdenuncias' && <AllDenuncias />}
-                {selectedMenu === 'eliminar-denuncia' && <AllDenuncias />}
+                {selectedMenu === 'eliminar-denuncia' && <EliminarDenuncias />}
             </Box>
         </Box>
     );
