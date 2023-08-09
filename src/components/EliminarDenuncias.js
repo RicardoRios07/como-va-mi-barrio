@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { red } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const useStyles = makeStyles({
     card: {
@@ -47,7 +48,6 @@ const useStyles = makeStyles({
     },
 });
 
-
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -69,20 +69,44 @@ function EliminarDenuncias() {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+	
+	const handleDelete = (_id) => {
+		fetch(`https://back-barrios-462cb6c76674.herokuapp.com/admin/deleteDenuncia/${_id}`, {
+			method: 'DELETE',
+		})
+    .then(response => response.json())
+    .then(data => {
+        // Actualiza el estado de las denuncias eliminando la que corresponde
+        setDenuncias(prevDenuncias => prevDenuncias.filter(denuncia => denuncia._id !== _id));
+    })
+    .catch(error => console.error('Error deleting denuncia:', error));
+};
 
-    useEffect(() => {
-        fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getAllDenuncias')
-            .then(response => response.json())
-            .then(data => setDenuncias(data))
-            .catch(error => console.error('Error fetching denuncias:', error));
-    }, []);
+useEffect(() => {
+    const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
+
+    fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getDenunciasUser', {
+        headers: {
+            'auth-token': authToken, // Agregar el token como encabezado
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                setDenuncias(data);
+            } else {
+                console.error('Datos de denuncias no válidos:', data);
+            }
+        })
+        .catch(error => console.error('Error fetching denuncias:', error));
+}, []);
 
 
     return (
         <Box>
             <Grid container spacing={2}>
-                {denuncias.map(denuncia => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={denuncia._id}> {/* Ajusta las columnas según el tamaño de la pantalla */}
+                {denuncias.map(data => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={data._id}> {/* Ajusta las columnas según el tamaño de la pantalla */}
                         <Card sx={{ maxWidth: 345 }}>
                             <CardHeader
                                 avatar={
@@ -95,23 +119,23 @@ function EliminarDenuncias() {
                                         {/* <MoreVertIcon /> */}
                                     </IconButton>
                                 }
-                                title={denuncia.tituloDenuncia}
+                                title={data.tituloDenuncia}
 
                             />
                             <CardMedia
                                 component="img"
                                 height="194"
-                                image={denuncia.evidencia}
+                                image={data.evidencia}
                                 title="evidencia"
                             />
                             <CardContent>
                                 <Typography>
-                                    <strong>Denunciante:</strong> {denuncia.nombreDenunciante}
+                                    <strong>Denunciante:</strong> {data.nombreDenunciante}
                                 </Typography>
                                 <Typography>
                                     <strong>Ubicación:</strong>{' '}
                                     <a
-                                        href={`https://www.google.com/maps?q=${denuncia.ubicacion.coordenadas[1]},${denuncia.ubicacion.coordenadas[0]}`}
+                                        href={`https://www.google.com/maps?q=${data.ubicacion}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className={classes.cardLocationLink}
@@ -120,19 +144,22 @@ function EliminarDenuncias() {
                                     </a>
                                 </Typography>
                                 <Typography variant="body2" className={classes.cardContent}>
-                                    <strong>Categoría:</strong> {denuncia.categoria}
+                                    <strong>Categoría:</strong> {data.categoria}
                                 </Typography>
                                 <Typography variant="body2" className={classes.cardContent}>
-                                    <strong>Estado:</strong> {denuncia.estado}
+                                    <strong>Estado:</strong> {data.estado}
                                 </Typography>
                                 <Typography variant="body2" className={classes.cardContent}>
-                                    <strong>Fecha y Hora:</strong> {new Date(denuncia.fechaHora).toLocaleString()}
+                                    <strong>Fecha y Hora:</strong> {new Date(data.fechaHora).toLocaleString()}
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
                                 <IconButton aria-label="add to favorites"> 
                                     <RestoreFromTrashIcon />
                                 </IconButton>
+								 <IconButton aria-label="delete" onClick={() => handleDelete(data._id)}>
+									<DeleteIcon />
+								</IconButton>
                                 <ExpandMore
                                     expand={expanded}
                                     onClick={handleExpandClick}
@@ -142,12 +169,12 @@ function EliminarDenuncias() {
                                     <ExpandMoreIcon />
                                 </ExpandMore>
                             </CardActions>
-                            <Collapse key={denuncia._id} in={expanded} timeout="auto" unmountOnExit>
+                            <Collapse key={data._id} in={expanded} timeout="auto" unmountOnExit>
                                 <CardContent>
                                     <Typography paragraph>Detalles:</Typography>
 
                                     <Typography>
-                                       <p>{denuncia.descripcion}</p>
+                                       <p>{data.descripcion}</p>
                                     </Typography>
                                 </CardContent>
                             </Collapse>

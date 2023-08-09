@@ -180,7 +180,7 @@ export default function MainMenu() {
                 <DrawerHeader />
                 {selectedMenu === 'inicio' && <AllDenuncias />} {/* Mostrar AllDenuncias si selecciona Inicio */}
                 {selectedMenu === 'crear-denuncia' && <FormDenuncia />} {/* Mostrar FormDenuncia si selecciona Crear Denuncia */}
-                {selectedMenu === 'misdenuncias' && <AllDenuncias />}
+                {selectedMenu === 'misdenuncias' && <EliminarDenuncias />}
             </Box>
         </Box>
     );
