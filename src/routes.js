@@ -7,11 +7,13 @@ import WelcomePage from './pages/WelcomePage';
 import HomePage from './pages/HomePage';
 import Home from './components/AllDenuncias';
 import NewPasswordPage from './pages/NewPasswordPage';
+import verificarPage from './pages/verificarUserPage';
 
 const routes = [
     { path: '/', component: WelcomePage, exact: true },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
+    {path: 'verificarCuenta', component:verificarPage},
     { path: '/home', component: HomePage, protected: true },
     { path: '/nuevaContraseña', component: NewPasswordPage},
     { path: '/denuncias', component: Home, protected: false },

@@ -18,7 +18,7 @@ import GoogleMapComponent from './GoogleMap';
 const FormDenuncia = () => {
     const [tituloDenuncia, setTituloDenuncia] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [evidencia, setEvidencia] = useState(null);
+    const [evidencia, setEvidencia] = useState('');
     const [ubicacion, setUbicacion] = useState('');
     const [categoria, setCategoria] = useState('');
 
@@ -49,8 +49,9 @@ const FormDenuncia = () => {
         } catch (error) {
             if (error.response) {
                 // Error response from the server
-                const errorMessage = error.response.data.message || 'Error al enviar la denuncia';
-                toast.error(errorMessage);
+                const errorMessage = error.response.data || 'Error al enviar la denuncia';
+                console.log(error.response.data);
+                toast.error(error.response.data);
             } else if (error.request) {
                 // Request made, but no response received
                 toast.error('Error de conexión. Inténtalo nuevamente.');

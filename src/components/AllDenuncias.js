@@ -63,7 +63,7 @@ function AllDenuncias() {
             <Box>
                 <Grid container spacing={2}>
                     {denuncias.map(denuncia => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={denuncia._id}> {/* Ajusta las columnas según el tamaño de la pantalla */}
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={denuncia._id}>
                         <Card className={classes.card}>
                             <img src={denuncia.evidencia} alt="Evidencia" className={classes.cardImage} />
                             <CardContent>
@@ -76,7 +76,7 @@ function AllDenuncias() {
                                 <Typography variant="body2" className={classes.cardContent}>
                                     <strong>Ubicación:</strong>{' '}
                                     <a
-                                        href={`https://www.google.com/maps?q=${denuncia.ubicacion.coordenadas[1]},${denuncia.ubicacion.coordenadas[0]}`}
+                                        href={`https://www.google.com/maps?q=${denuncia.ubicacion}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className={classes.cardLocationLink}

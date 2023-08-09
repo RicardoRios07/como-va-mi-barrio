@@ -150,7 +150,6 @@ export default function MainMenu() {
                         { text: 'Inicio', icon: <HomeIcon />, key: 'inicio' },
                         { text: 'Crear Denuncia', icon: <PostAddIcon />,  key: 'crear-denuncia' },
                         { text: 'Mis Denuncias', icon: <ListIcon />, key: 'misdenuncias' },
-                        { text: 'Eliminar Denuncia', icon: <DeleteIcon />, key: 'eliminar-denuncia' },
                     ].map(({ text, icon, path, key }) => (
                         <ListItem key={key} disablePadding sx={{ display: 'block' }}>
                             <ListItemButton
@@ -182,7 +181,6 @@ export default function MainMenu() {
                 {selectedMenu === 'inicio' && <AllDenuncias />} {/* Mostrar AllDenuncias si selecciona Inicio */}
                 {selectedMenu === 'crear-denuncia' && <FormDenuncia />} {/* Mostrar FormDenuncia si selecciona Crear Denuncia */}
                 {selectedMenu === 'misdenuncias' && <AllDenuncias />}
-                {selectedMenu === 'eliminar-denuncia' && <EliminarDenuncias />}
             </Box>
         </Box>
     );
