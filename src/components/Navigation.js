@@ -7,24 +7,32 @@ import NotAuthorizedPage from '../pages/NotAuthorizedPage';
 
 function Navigation() {
     const userHasToken = localStorage.getItem('auth-token') !== null;
+    console.log('antes de if', userHasToken);
 
     return (
         <Router>
             <div>
                 <Routes>
-                    {map(routes, (route, index) => (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            element={
-                                !route.protected || userHasToken ? (
-                                    <route.component />
-                                ) : (
-                                    <Navigate to="/unauthorized" /> 
-                                )
-                            }
-                        />
-                    ))}
+                    {map(routes, (route, index) => {
+                        if (!route.protected || userHasToken) {
+                            console.log( 'comparar',userHasToken);
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={<route.component />}
+                                />
+                            );
+                        } else {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={<Navigate to="/home" />}
+                                />
+                            );
+                        }
+                    })}
                     <Route path="/unauthorized" element={<NotAuthorizedPage />} /> 
                     <Route path="*" element={<NotFound />} />
                 </Routes>

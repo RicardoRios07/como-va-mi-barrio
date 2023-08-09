@@ -154,9 +154,6 @@ useEffect(() => {
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites"> 
-                                    <RestoreFromTrashIcon />
-                                </IconButton>
 								 <IconButton aria-label="delete" onClick={() => handleDelete(data._id)}>
 									<DeleteIcon />
 								</IconButton>
