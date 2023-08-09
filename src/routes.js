@@ -13,7 +13,7 @@ const routes = [
     { path: '/', component: WelcomePage, exact: true },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
-    {path: '/verificarCuenta', component:verificarPage},
+    {path: '/verificarCuenta/:token', component:verificarPage},
     { path: '/home', component: HomePage, protected: true },
     { path: '/nuevaContraseña', component: NewPasswordPage},
     { path: '/denuncias', component: Home, protected: false },
