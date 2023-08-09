@@ -9,7 +9,7 @@ const VerificarCuenta = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const verifyAccount = async () => {
+    const verifyAccount = async (token) => {
       try {
         await axios.post(`https://back-barrios-462cb6c76674.herokuapp.com/auth/verifyUser/${token}`);
         setLoading(false);
