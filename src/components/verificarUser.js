@@ -1,43 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Container, Typography, CircularProgress, Alert, AlertTitle } from '@mui/material';
 import axios from 'axios';
-import { Typography, CircularProgress, Box } from '@mui/material';
 
-function VerificarUser({ verificationToken }) {
-  const [verificationStatus, setVerificationStatus] = useState('');
+const VerificarCuenta = () => {
+  const { token } = useParams();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const verifyUser = async () => {
+    const verifyAccount = async () => {
       try {
-        const response = await axios.post('https://back-barrios-462cb6c76674.herokuapp.com/auth/verifyUser/', {
-          verificationToken: verificationToken
-        });
-
-        // Actualizar el estado con el resultado de la verificación
-        setVerificationStatus(response.data.message);
+        await axios.post(`https://back-barrios-462cb6c76674.herokuapp.com/auth/verifyUser/${token}`);
+        setLoading(false);
       } catch (error) {
-        console.error('Error al verificar el usuario:', error);
-        setVerificationStatus('Error al verificar el usuario');
-      } finally {
+        setError(error.response?.data?.error || 'Error al verificar la cuenta');
         setLoading(false);
       }
     };
 
-    verifyUser();
-  }, [verificationToken]);
+    verifyAccount();
+  }, [token]);
 
   return (
-    <Box textAlign="center" p={3}>
-      <Typography variant="h4" gutterBottom>
-        Verificación de Usuario
-      </Typography>
+    <Container maxWidth="md">
       {loading ? (
         <CircularProgress />
+      ) : error ? (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          {error}
+        </Alert>
       ) : (
-        <Typography variant="body1">{verificationStatus}</Typography>
+        <Alert severity="success">
+          <AlertTitle>Cuenta verificada</AlertTitle>
+          ¡Tu cuenta ha sido verificada correctamente!
+        </Alert>
       )}
-    </Box>
+    </Container>
   );
-}
+};
 
-export default VerificarUser;
+export default VerificarCuenta;
