@@ -69,37 +69,37 @@ function EliminarDenuncias() {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-	
-	const handleDelete = (_id) => {
-		fetch(`${process.env.URL_BACK}/admin/deleteDenuncia/${_id}`, {
-			method: 'DELETE',
-		})
-    .then(response => response.json())
-    .then(data => {
-        // Actualiza el estado de las denuncias eliminando la que corresponde
-        setDenuncias(prevDenuncias => prevDenuncias.filter(denuncia => denuncia._id !== _id));
-    })
-    .catch(error => console.error('Error deleting denuncia:', error));
-};
 
-useEffect(() => {
-    const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
-
-    fetch(`${process.env.URL_BACK}/denuncias/getDenunciasUser/${_id}`, {
-        headers: {
-            'auth-token': authToken, // Agregar el token como encabezado
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (Array.isArray(data)) {
-                setDenuncias(data);
-            } else {
-                console.error('Datos de denuncias no válidos:', data);
-            }
+    const handleDelete = (_id) => {
+        fetch(`${process.env.URL_BACK}/admin/deleteDenuncia/${_id}`, {
+            method: 'DELETE',
         })
-        .catch(error => console.error('Error fetching denuncias:', error));
-}, []);
+            .then(response => response.json())
+            .then(data => {
+                // Actualiza el estado de las denuncias eliminando la que corresponde
+                setDenuncias(prevDenuncias => prevDenuncias.filter(denuncia => denuncia._id !== _id));
+            })
+            .catch(error => console.error('Error deleting denuncia:', error));
+    };
+
+    useEffect(() => {
+        const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
+
+        fetch(`${process.env.URL_BACK}/denuncias/getDenunciasUser/`, {
+            headers: {
+                'auth-token': authToken, // Agregar el token como encabezado
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setDenuncias(data);
+                } else {
+                    console.error('Datos de denuncias no válidos:', data);
+                }
+            })
+            .catch(error => console.error('Error fetching denuncias:', error));
+    }, []);
 
 
     return (
@@ -154,9 +154,9 @@ useEffect(() => {
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-								 <IconButton aria-label="delete" onClick={() => handleDelete(data._id)}>
-									<DeleteIcon />
-								</IconButton>
+                                <IconButton aria-label="delete" onClick={() => handleDelete(data._id)}>
+                                    <DeleteIcon />
+                                </IconButton>
                                 <ExpandMore
                                     expand={expanded}
                                     onClick={handleExpandClick}
@@ -171,7 +171,7 @@ useEffect(() => {
                                     <Typography paragraph>Detalles:</Typography>
 
                                     <Typography>
-                                       <p>{data.descripcion}</p>
+                                        <p>{data.descripcion}</p>
                                     </Typography>
                                 </CardContent>
                             </Collapse>

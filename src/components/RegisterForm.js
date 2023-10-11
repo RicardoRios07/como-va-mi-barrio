@@ -36,7 +36,7 @@ export default function RegisterForm() {
         formData.append('photo', data.get('photo'));
 
         try {
-            const response = await fetch('https://back-barrios-462cb6c76674.herokuapp.com/auth/register', {
+            const response = await fetch(`${process.env.URL_BACK}/auth/register`, {
                 method: 'POST',
                 body: formData,
             });

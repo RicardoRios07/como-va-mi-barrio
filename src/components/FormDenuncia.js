@@ -43,7 +43,7 @@ const FormDenuncia = () => {
 
         try {
             const response = await axios.post(
-                `(${process.env.URL_BACK}/denuncias/nuevaDenuncia${_id}`,
+                `(${process.env.URL_BACK}/denuncias/nuevaDenuncia`,
                 formData,
                 {
                     headers: {

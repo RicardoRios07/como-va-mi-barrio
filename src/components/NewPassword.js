@@ -57,7 +57,7 @@ function NewPassword() {
         };
 
         try {
-            const response = await fetch( `${process.env.URL_BACK}/auth/newPassword/${_id}`, {
+            const response = await fetch( `${process.env.URL_BACK}/auth/newPassword/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

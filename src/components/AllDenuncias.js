@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
+import axios from 'axios'; // Importa Axios
+const apiUrl = 'http://localhost:5000';
 
 const useStyles = makeStyles({
     card: {
@@ -41,17 +43,17 @@ function AllDenuncias() {
     const [denuncias, setDenuncias] = useState([]);
 
     useEffect(() => {
-        const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
+        const authToken = localStorage.getItem('auth-token');
+        console.log('URL DEL BACK', apiUrl);
 
-
-        fetch( `${process.env.URL_BACK}/denuncias/getAllDenuncias/`, {
+        // Utiliza Axios para realizar la petición
+        axios.get(`${apiUrl}/denuncias/getAllDenuncias/`, {
             headers: {
-                'auth-token': authToken, // Agregar el token como encabezado
+                'auth-token': authToken,
             },
         })
-            .then(response => response.json())
-            .then(data => setDenuncias(data))
-            .catch(error => console.error('Error fetching denuncias:', error));
+            .then(response => setDenuncias(response.data))
+            .catch(error => console.error('Error obteniendo denuncias:', error));
     }, []);
 
     // Comprobar si denuncias no es un arreglo
@@ -59,10 +61,12 @@ function AllDenuncias() {
         return <p>No se pudo cargar las denuncias</p>;
     }
 
+    console.log(denuncias);
 
     return (
             <Box>
                 <Grid container spacing={2}>
+                    
                     {denuncias.map(denuncia => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={denuncia._id}>
                         <Card className={classes.card}>

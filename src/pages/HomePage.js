@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Home from "../components/AllDenuncias";
 import MainMenu from "../components/MainMenu";
 
+
 const HomePage = () => {
     return (
         <div
@@ -25,10 +26,10 @@ const HomePage = () => {
                     zIndex: -1, // Asegura que la imagen esté detrás de los demás contenidos
                 }}
             />
-            {/* <Header/> */}
+            {/* <Header /> */}
             <MainMenu />
-            {/* <Home /> */}
-            {/* <Footer /> */}
+            <Home /> 
+            <Footer />
         </div>
     );
 }

@@ -14,7 +14,7 @@ const routes = [
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
     {path: '/verificarCuenta/:token', component:verificarUserPage},
-    { path: '/home', component: HomePage, protected: true },
+    { path: '/home', component: HomePage, protected: false },
     { path: '/nuevaContraseña', component: NewPasswordPage},
     { path: '/denuncias', component: Home, protected: false },
     { path: '/nuevaDenuncia', component: NuevaDenuncia, protected: true }, 
