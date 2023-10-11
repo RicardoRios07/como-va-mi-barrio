@@ -71,7 +71,7 @@ function EliminarDenuncias() {
     };
 	
 	const handleDelete = (_id) => {
-		fetch(`https://back-barrios-462cb6c76674.herokuapp.com/admin/deleteDenuncia/${_id}`, {
+		fetch(`${process.env.URL_BACK}/admin/deleteDenuncia/${_id}`, {
 			method: 'DELETE',
 		})
     .then(response => response.json())
@@ -85,7 +85,7 @@ function EliminarDenuncias() {
 useEffect(() => {
     const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
 
-    fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getDenunciasUser', {
+    fetch(`${process.env.URL_BACK}/denuncias/getDenunciasUser/${_id}`, {
         headers: {
             'auth-token': authToken, // Agregar el token como encabezado
         },
