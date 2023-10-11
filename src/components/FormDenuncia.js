@@ -13,7 +13,14 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import TitleIcon from '@mui/icons-material/Title';
+import SecurityIcon from '@mui/icons-material/Security'; 
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import BuildIcon from '@mui/icons-material/Build'; 
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import GoogleMapComponent from './GoogleMap';
+import Send from '@mui/icons-material/Send';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const FormDenuncia = () => {
     const [tituloDenuncia, setTituloDenuncia] = useState('');
@@ -65,7 +72,6 @@ const FormDenuncia = () => {
 
 
     return (
-
         <Card>
             <CardContent>
                 <form onSubmit={handleFormSubmit}>
@@ -76,6 +82,11 @@ const FormDenuncia = () => {
                         fullWidth
                         required
                         margin="normal"
+                        InputProps={{
+                            startAdornment: (
+                                <TitleIcon sx={{ color: 'action.active', mr: 1 }} />
+                            ),
+                        }}
                     />
                     <TextField
                         label="Descripción"
@@ -86,37 +97,50 @@ const FormDenuncia = () => {
                         fullWidth
                         required
                         margin="normal"
+                        InputProps={{
+                            startAdornment: (
+                                <DescriptionIcon sx={{ color: 'action.active', mr: 1 }} />
+                            ),
+                        }}
                     />
                     <TextField
-    fullWidth
-    name="evidencia"
-    label="Añade una foto de evidencia"
-    type="file"
-    id="evidencia"
-    accept="image/*"
-    InputProps={{
-        startAdornment: (
-            <PhotoCameraIcon sx={{ color: 'action.active', mr: 1 }} />
-        ),
-    }}
-    onChange={(e) => setEvidenciaFile(e.target.files[0])}
-/>
+                        fullWidth
+                        name="evidencia"
+                        label="Añade una foto de evidencia"
+                        type="file"
+                        id="evidencia"
+                        accept="image/*"
+                        InputProps={{
+                            startAdornment: (
+                                <PhotoCameraIcon sx={{ color: 'action.active', mr: 1 }} />
+                            ),
+                        }}
+                        onChange={(e) => setEvidenciaFile(e.target.files[0])}
+                    />
                     <h5>Envía tu Ubicación: </h5>
-                    <GoogleMapComponent setUbicacion={setUbicacion} /> {/* Pasar setUbicacion como prop */}
+                    <GoogleMapComponent setUbicacion={setUbicacion} />
                     <FormControl fullWidth margin="normal" required>
                         <InputLabel>Categoría</InputLabel>
                         <Select
                             value={categoria}
                             onChange={(e) => setCategoria(e.target.value)}
                         >
-                            <MenuItem value="Seguridad">Seguridad</MenuItem>
-                            <MenuItem value="Infraestructura">Infraestructura</MenuItem>
-                            <MenuItem value="Contaminacion">Contaminación</MenuItem>
-                            <MenuItem value="Ruido">Ruido</MenuItem>
+                            <MenuItem value="Seguridad">
+                                <SecurityIcon /> Seguridad
+                            </MenuItem>
+                            <MenuItem value="Infraestructura">
+                                <BuildIcon /> Infraestructura
+                            </MenuItem>
+                            <MenuItem value="Contaminacion">
+                                <DeleteOutlineIcon /> Contaminación
+                            </MenuItem>
+                            <MenuItem value="Ruido">
+                                <VolumeUpIcon /> Ruido
+                            </MenuItem>
                         </Select>
                     </FormControl>
                     <Button type="submit" variant="contained" color="primary">
-                        Enviar Denuncia
+                        <Send /> Enviar Denuncia
                     </Button>
                 </form>
                 <ToastContainer position="top-center" autoClose={5000} />

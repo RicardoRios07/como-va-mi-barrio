@@ -28,7 +28,7 @@ const HomePage = () => {
             {/* <Header/> */}
             <MainMenu />
             {/* <Home /> */}
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }
