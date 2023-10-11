@@ -43,7 +43,8 @@ function AllDenuncias() {
     useEffect(() => {
         const authToken = localStorage.getItem('auth-token'); // Obtener token del Local Storage
 
-        fetch('https://back-barrios-462cb6c76674.herokuapp.com/denuncias/getAllDenuncias', {
+
+        fetch( `${process.env.URL_BACK}/denuncias/getAllDenuncias/`, {
             headers: {
                 'auth-token': authToken, // Agregar el token como encabezado
             },

@@ -43,7 +43,7 @@ const FormDenuncia = () => {
 
         try {
             const response = await axios.post(
-                'https://back-barrios-462cb6c76674.herokuapp.com/denuncias/nuevaDenuncia',
+                `(${process.env.URL_BACK}/denuncias/nuevaDenuncia${_id}`,
                 formData,
                 {
                     headers: {

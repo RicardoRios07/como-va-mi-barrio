@@ -57,7 +57,7 @@ function NewPassword() {
         };
 
         try {
-            const response = await fetch('https://back-barrios-462cb6c76674.herokuapp.com/auth/newPassword', {
+            const response = await fetch( `${process.env.URL_BACK}/auth/newPassword/${_id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
